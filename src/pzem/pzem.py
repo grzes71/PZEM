@@ -36,7 +36,7 @@ class PZEM:
         '''
         Query device and log data to csv file
         '''
-        spamwriter = csv.writer(self.cfg.outfile, quoting=csv.QUOTE_MINIMAL)
+        writer = csv.writer(self.cfg.outfile, quoting=csv.QUOTE_MINIMAL)
         self.cfg.outfile.close()
 
     def reset(self):
