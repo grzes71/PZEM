@@ -20,8 +20,9 @@ log = logging.getLogger(__name__)
 class PZEM:
     def __init__(self, args):
         self.__cfg = args
-        self.__ser = serial.Serial(args.port, baudrate=args.baudrate, bytesize=BYTESIZE, parity=PARITY, 
-                                   stopbits=STOPBITS, timeout=TIMEOUT, xonxoff=XONXOFF, rtscts=RTSCTS)
+        self.__ser = None
+        # self.__ser = serial.Serial(args.port, baudrate=args.baudrate, bytesize=BYTESIZE, parity=PARITY, 
+        #                            stopbits=STOPBITS, timeout=TIMEOUT, xonxoff=XONXOFF, rtscts=RTSCTS)
 
     @property
     def cfg(self):
@@ -31,7 +32,21 @@ class PZEM:
     def ser(self):
         return self.__ser
 
-    def log_to_csv(self):
+    def log(self):
+        '''
+        Query device and log data to csv file
+        '''
         spamwriter = csv.writer(self.cfg.outfile, quoting=csv.QUOTE_MINIMAL)
         spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
         spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+        self.cfg.outfile.close()
+
+    def reset(self):
+        '''
+        Send reset energy to device
+        '''
+
+    def gui(self):
+        '''
+        Start GUI
+        '''
